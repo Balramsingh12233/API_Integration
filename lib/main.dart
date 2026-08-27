@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_api/photosscreen.dart';
 
-import 'homescreen.dart';
+//import 'homescreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.greenAccent,
         ),
       ),
-      home: Homescreen(),
+      home: Photosscreen(),
     );
   }
 }
