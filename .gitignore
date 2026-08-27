@@ -1,4 +1,10 @@
 # Miscellaneous
+#*
+#*.log
+#
+#Means:
+#
+#Ignore every file ending with .log
 *.class
 *.log
 *.pyc
@@ -40,6 +46,18 @@ app.*.symbols
 app.*.map.json
 
 # Android Studio will place build artifacts here
+#/folder/
+#.dart_tool/
+#
+#Means:
+#
+#Ignore that folder.
+#
+#/build/
+#
+#The starting / means:
+#
+#Ignore the build folder specifically from the project root.
 /android/app/debug
 /android/app/profile
 /android/app/release
