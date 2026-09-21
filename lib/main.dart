@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_api/photosscreen.dart';
+import 'package:flutter_api/productscreen.dart';
+//import 'package:flutter_api/photosscreen.dart';
+//import 'package:flutter_api/userdetails.dart';
 
 //import 'homescreen.dart';
 
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.greenAccent,
         ),
       ),
-      home: Photosscreen(),
+      home: ProductScreen(),
     );
   }
 }

@@ -5,8 +5,8 @@
 /// data : {"organization":{"id":"org_77218392","name":"Global Retail Corp","taxId":"US-8829103-X","settings":{"currency":"USD","timezone":"America/New_York","featuresEnabled":["beta_checkout","split_shipping","loyalty_rewards"]}},"orders":[{"orderId":"ord_2026_88910","invoiceNumber":"INV-99210-2026","orderStatus":"PROCESSING","financialStatus":"PARTIALLY_REFUNDED","createdAt":"2026-08-27T18:22:00Z","updatedAt":"2026-08-28T09:15:30Z","customer":{"customerId":"cust_44102","firstName":"Alexandre","lastName":"Martins","email":"alex.martins@example.co.uk","phone":"+447700900077","isVerified":true,"tags":["vip","frequent_buyer","tech_enthusiast"],"preferences":{"marketingOptIn":false,"preferredLanguage":"en-GB"}},"billingAddress":{"street":"102 Baker St","apartment":"Suite 4B","city":"London","state":null,"postalCode":"NW1 6XE","countryCode":"GB","coordinates":{"latitude":51.5237,"longitude":-0.1585}},"shippingDetails":{"carrier":"DHL Express","trackingNumber":"JD01460000829101","estimatedDelivery":"2026-09-01T16:00:00Z","signatureRequired":true,"shipments":[{"shipmentId":"shp_001","warehouseId":"wh_east_09","itemsContained":["sku_10029","sku_44921"]},{"shipmentId":"shp_002","warehouseId":"wh_central_02","itemsContained":["sku_88291"]}]},"lineItems":[{"itemId":"li_0001","sku":"sku_10029","name":"QuantumX Wireless Earbuds","quantity":2,"unitPrice":129.99,"discount":{"type":"PROMO_CODE","code":"SUMMER26","amount":25.00},"totalPrice":234.98,"giftWrap":{"requested":true,"message":"Happy Birthday, Dad!","theme":"classic_gold"},"specifications":{"color":"Matte Black","connectivity":"Bluetooth 5.3","warrantyMonths":24}},{"itemId":"li_0002","sku":"sku_44921","name":"Ultra-Wide Charging Pad Pro","quantity":1,"unitPrice":45.00,"discount":null,"totalPrice":45.00,"giftWrap":{"requested":false,"message":null,"theme":null},"specifications":{"color":"Space Gray","powerOutputWatts":15}},{"itemId":"li_0003","sku":"sku_88291","name":"Ergonomic Office Chair Lumbar Support Insert","quantity":1,"unitPrice":89.50,"discount":{"type":"AUTOMATIC","code":"BULK_SAVINGS","amount":9.50},"totalPrice":80.00,"giftWrap":{"requested":false,"message":null,"theme":null},"specifications":{}}],"summary":{"subtotal":394.48,"shippingCost":15.00,"taxAmount":32.75,"grandTotal":442.23,"currencyExchangeRate":1.28},"metadata":{"sourceIp":"192.168.1.45","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)...","riskScore":0.02,"flags":[]}}]}
 /// experimentalFeatures : {"dynamicPricing":true,"aiRecommendations":"v2-alpha"}
 
-class PrroductsModel {
-  PrroductsModel({
+class ProductsModel {
+  ProductsModel({
       String? status, 
       String? timestamp, 
       String? requestId, 
@@ -21,7 +21,7 @@ class PrroductsModel {
     _experimentalFeatures = experimentalFeatures;
 }
 
-  PrroductsModel.fromJson(dynamic json) {
+  ProductsModel.fromJson(dynamic json) {
     _status = json['status'];
     _timestamp = json['timestamp'];
     _requestId = json['requestId'];
@@ -35,13 +35,13 @@ class PrroductsModel {
   Pagination? _pagination;
   Data? _data;
   ExperimentalFeatures? _experimentalFeatures;
-PrroductsModel copyWith({  String? status,
+ProductsModel copyWith({  String? status,
   String? timestamp,
   String? requestId,
   Pagination? pagination,
   Data? data,
   ExperimentalFeatures? experimentalFeatures,
-}) => PrroductsModel(  status: status ?? _status,
+}) => ProductsModel(  status: status ?? _status,
   timestamp: timestamp ?? _timestamp,
   requestId: requestId ?? _requestId,
   pagination: pagination ?? _pagination,
@@ -71,6 +71,8 @@ PrroductsModel copyWith({  String? status,
     }
     return map;
   }
+
+  void operator [](int other) {}
 
 }
 
@@ -314,10 +316,8 @@ class Metadata {
     _userAgent = json['userAgent'];
     _riskScore = json['riskScore'];
     if (json['flags'] != null) {
-      _flags = [];
-      json['flags'].forEach((v) {
-        _flags?.add(Dynamic.fromJson(v));
-      });
+      // Cast the list elements safely to dynamic or String
+      _flags = List<dynamic>.from(json['flags']);
     }
   }
   String? _sourceIp;
